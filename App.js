@@ -121,7 +121,7 @@ const addLocation=function(){
 
   }
 
-    <Button onPress={addLocation} title='add location'/>
+    <Button onPress={addLocation} title='Ajouter une ville'/>
   </View>
    
   );
@@ -191,30 +191,30 @@ function addLocationPage({navigation}){
     
       <View>
          
-          <Text>Add New Location</Text>
+          <Text>Ajouter une nouvelle ville</Text>
           <TextInput
         style={styles.input}
         onChangeText={newText => setName(newText)}
         value={location_name}
-        placeholder="enter the name of the location"
+        placeholder="entez le nom de la ville"
         
       />
           <TextInput
         style={styles.input}
         onChangeText={newText => setLongitude(newText)}
         value={longitude}
-        placeholder="enter the longitude of the location"
+        placeholder="entez la longitude"
         
       />
       <TextInput
         style={styles.input}
         onChangeText={newText => setLatitude(newText)}
         value={latitude}
-        placeholder="enter the latitude of the location"
+        placeholder="entez la latitude"
         
       />
      
-          <Button onPress={save} title="Go To Home Screen" />
+          <Button onPress={save} title="Acceuil" />
       </View>
   )
 }
