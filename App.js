@@ -6,12 +6,11 @@ import {NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, {useEffect, useState}from 'react';
 import {collection, addDoc, Timestamp, query, orderBy, onSnapshot} from 'firebase/firestore'
-
+import { ListItem, Avatar } from 'react-native-elements'
 
 const API_KEY ='49cc8c821cd2aff9af04c9f98c36eb74';
 function tellWeatherPage({route}) {
   const img = require('./image.png')
-  console.log(img)
 console.log(route.params.location.key.name)
  
 const [data, setData] = useState({});
@@ -24,7 +23,6 @@ useEffect(() => {
   const fetchDataFromApi = (latitude,longitude) => {
     if(latitude && longitude) {
       fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
-      console.log("data")
       console.log(data)
       setData(data)
       })
@@ -64,14 +62,10 @@ function citiesList({navigation}) {
  )
 
 if (cities_list!= null) {
-  
+  console.log(cities_list);
   //handlecitiesChange();
   cities_list.forEach(function(element){
-    
-  
       cities.push({key:element.data});
-      
-   
 });
 }
 
@@ -95,12 +89,36 @@ const addLocation=function(){
   
   return (
     <View style={styles.container}>
+
+  {
     
-    <FlatList
-      data={cities}
-      renderItem={({item}) => <Text onPress={newText => tellWeather(item) }
-      style={styles.item}>{item.key.name}</Text>}
-    />
+      
+
+          <FlatList
+          data={cities}
+          renderItem={({item}) => <Text onPress={newText => tellWeather(item) }
+          style={styles.item}>
+            
+            <ListItem bottomDivider>
+        
+        <ion-icon name="location-outline"></ion-icon>
+
+        <ListItem.Content>
+          
+            <ListItem.Title>{item.key.name} - MA</ListItem.Title> 
+          <ListItem.Subtitle>Latitude : {item.key.latitude}</ListItem.Subtitle>
+          <ListItem.Subtitle>Longitude : {item.key.longitude}</ListItem.Subtitle>
+
+          <ListItem.Chevron />
+        </ListItem.Content>
+      </ListItem>
+
+          </Text>}
+          />
+         
+
+  }
+
     <Button onPress={addLocation} title='add location'/>
   </View>
    
@@ -212,7 +230,7 @@ export default function App() {
                 <Stack.Screen name="tellWeather" component={tellWeatherPage}/>
             </Stack.Navigator>
         </NavigationContainer>
-    );
+    ); 
 }
 
 const styles = StyleSheet.create({
@@ -220,7 +238,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   image:{
     flex:1, 
