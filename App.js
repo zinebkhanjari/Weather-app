@@ -252,6 +252,12 @@ const styles = StyleSheet.create({
     textShadowRadius:5,
 
   },
+  input : {
+    margin: 10,
+    height: 40,
+    borderColor: '#000000',
+    borderWidth: 1
+  },
   image:{
     flex:1, 
     resizeMode:"cover", 
