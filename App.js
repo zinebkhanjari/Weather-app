@@ -120,8 +120,10 @@ const addLocation=function(){
          
 
   }
-
+<br/>
     <Button onPress={addLocation} title='Ajouter une ville'/>
+<br/>
+    <Button title="A propos de l'application " />
   </View>
    
   );
@@ -189,9 +191,10 @@ function addLocationPage({navigation}){
 
   return(
     
-      <View>
+      <View style={styles.container}>
          
           <Text>Ajouter une nouvelle ville</Text>
+          <br/>
           <TextInput
         style={styles.input}
         onChangeText={newText => setName(newText)}
@@ -199,6 +202,7 @@ function addLocationPage({navigation}){
         placeholder="entez le nom de la ville"
         
       />
+      <br/>
           <TextInput
         style={styles.input}
         onChangeText={newText => setLongitude(newText)}
@@ -206,6 +210,7 @@ function addLocationPage({navigation}){
         placeholder="entez la longitude"
         
       />
+      <br/>
       <TextInput
         style={styles.input}
         onChangeText={newText => setLatitude(newText)}
@@ -213,8 +218,8 @@ function addLocationPage({navigation}){
         placeholder="entez la latitude"
         
       />
-     
-          <Button onPress={save} title="Acceuil" />
+     <br/>
+          <Button onPress={save} title="accueil" />
       </View>
   )
 }
@@ -240,6 +245,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
+    fontSize:17,
+    color:'#FFFFFF',
+    fontFamily:'Times New Roman',
+    textShadowColor:'#585858',
+    textShadowRadius:5,
+
   },
   image:{
     flex:1, 
