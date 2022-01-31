@@ -1,10 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet,FlatList, Text, View ,Button,TextInput,ImageBackground} from 'react-native';
 import { db } from "./firebase";
 import DateTime from './DateTime'
 //import WeatherScroll from './WeatherScroll'
-import { useHistory } from 'react-router';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import {NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, {useEffect, useState}from 'react';
@@ -17,7 +14,7 @@ function tellWeatherPage({route}) {
 console.log(route.params.location.key.name)
  
 const [data, setData] = useState({});
-const [currentLongitude,setCurrentlongitude]=useState();
+
 useEffect(() => {
 
     fetchDataFromApi(route.params.location.key.latitude, route.params.location.key.longitude);
@@ -50,9 +47,6 @@ function citiesList({navigation}) {
   const [cities,setcities]=useState([]);
   const [location,setLocation]=useState([]);
   
-  //const [cities,setcities]=useState([]);
-
-
   useEffect(() => {
    // fetchDataFromApi("34.0181", "5.0078");
 
@@ -67,8 +61,6 @@ function citiesList({navigation}) {
     },[]
   
  )
- console.log('here')
- console.log(cities_list)
 
 if (cities_list!= null) {
   
@@ -78,26 +70,10 @@ if (cities_list!= null) {
   
       cities.push({key:element.data});
       
-
-  
    
 });
 }
 
-
-    /*(async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        fetchDataFromApi("34.0181", "5.0078")
-        return;
-      }
-
-      let location = await Location.getCurrentPositionAsync({});
-
-      fetchDataFromApi(location.coords.latitude, location.coords.longitude);
-    })();
-  
-*/
 
 const addLocation=function(){
   navigation.navigate('addLocation')
@@ -182,6 +158,7 @@ function addLocationPage({navigation}){
       latitude:latitude
     };
     addDoc(collection(db, 'city'), element);
+
     navigation.navigate("Home");
     
 
@@ -222,15 +199,6 @@ function addLocationPage({navigation}){
 }
 
 export default function App() {
- /* let history = useHistory();
-
-  const gocities=function(){
-    let target = {
-      pathname: '/cities'
-    };
-
-    history.push(target);
-  }*/
 
     const Stack = createNativeStackNavigator();
 
@@ -241,12 +209,6 @@ export default function App() {
                 <Stack.Screen name="Details" component={DetailsScreen}/>
                 <Stack.Screen name="addLocation" component={addLocationPage}/>
                 <Stack.Screen name="tellWeather" component={tellWeatherPage}/>
-
-    
-
-                
-
-                
             </Stack.Navigator>
         </NavigationContainer>
     );
