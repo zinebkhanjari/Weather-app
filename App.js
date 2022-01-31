@@ -175,14 +175,26 @@ function addLocationPage({navigation}){
     setLatitude(e.target.value);  }
 
   const save=function(){
-    let element={
-      name:location_name,
-      longitude:longitude,
-      latitude:latitude
-    };
+
+    if(!location_name){
+      alert("le nom est vide");
+    }
+    else if(!longitude){
+      alert("la longitude est vide");
+    }
+    else if (!latitude){
+      alert("la latitude est vide");
+    }
+    else{
+      let element={
+        name:location_name,
+        longitude:longitude,
+        latitude:latitude
+      };
     addDoc(collection(db, 'city'), element);
 
     navigation.navigate("Home");
+    }
     
 
   }
