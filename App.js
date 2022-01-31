@@ -7,6 +7,7 @@ import {createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, {useEffect, useState}from 'react';
 import {collection, addDoc, Timestamp, query, orderBy, onSnapshot} from 'firebase/firestore'
 import { ListItem, Avatar } from 'react-native-elements'
+import { Icon } from 'react-native-elements';
 
 const API_KEY ='49cc8c821cd2aff9af04c9f98c36eb74';
 function tellWeatherPage({route}) {
@@ -101,10 +102,11 @@ const addLocation=function(){
             
             <ListItem bottomDivider>
         
-        <ion-icon name="location-outline"></ion-icon>
-
-        <ListItem.Content>
+            <Icon
+          name='location-pin' />
           
+        <ListItem.Content>
+        
             <ListItem.Title>{item.key.name} - MA</ListItem.Title> 
           <ListItem.Subtitle>Latitude : {item.key.latitude}</ListItem.Subtitle>
           <ListItem.Subtitle>Longitude : {item.key.longitude}</ListItem.Subtitle>
