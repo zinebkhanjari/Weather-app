@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useEffect, useState}from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
-import * as Location from 'expo-location';
 import { useHistory,useLocation } from 'react-router';
 
 import DateTime from './components/DateTime'
@@ -24,8 +23,8 @@ export default function Weather() {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-
-      fetchDataFromApi(location.coords.latitude, location.coords.longitude);
+      
+      (location.coords.latitude, location.coords.longitude);
     })();
   
 */
