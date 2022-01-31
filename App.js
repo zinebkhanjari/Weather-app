@@ -9,11 +9,12 @@ import {NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, {useEffect, useState}from 'react';
 import {collection, addDoc, Timestamp, query, orderBy, onSnapshot} from 'firebase/firestore'
-//import Weather  from './weatherPerCity';
+
 
 const API_KEY ='49cc8c821cd2aff9af04c9f98c36eb74';
 function tellWeatherPage({route}) {
   const img = require('./image.png')
+  console.log(img)
 console.log(route.params.location.key.name)
  
 const [data, setData] = useState({});
@@ -259,4 +260,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  image:{
+    flex:1, 
+    resizeMode:"cover", 
+    justifyContent:"center"
+  }
 });
