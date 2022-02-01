@@ -63,7 +63,6 @@ function citiesList({navigation}) {
  )
 
 if (cities_list!= null) {
-  console.log(cities_list);
   //handlecitiesChange();
   cities_list.forEach(function(element){
       cities.push({key:element.data});
@@ -91,10 +90,17 @@ const addLocation=function(){
   return (
     <View style={styles.container}>
 
-  {
-    
-      
 
+<Text style={styles.upText}>
+<Icon
+          name='sunny' />
+  Weather App
+  this application is designed and developped by ABC Company
+  @2002
+</Text>
+
+
+  {
           <FlatList
           data={cities}
           renderItem={({item}) => <Text onPress={newText => tellWeather(item) }
@@ -195,11 +201,8 @@ function addLocationPage({navigation}){
 
     navigation.navigate("Home");
     }
-    
-
-  }
   
-
+  }
 
   return(
     
@@ -274,5 +277,11 @@ const styles = StyleSheet.create({
     flex:1, 
     resizeMode:"cover", 
     justifyContent:"center"
+  },
+  upText : {
+    justifyContent:"center",
+    alignItems: 'center',
+    backgroundColor: 'yellow',
+    margin: 30,
   }
 });
