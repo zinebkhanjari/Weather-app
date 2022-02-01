@@ -10,6 +10,7 @@ import { ListItem, Avatar } from 'react-native-elements'
 import { Icon } from 'react-native-elements';
 import SplashScreen from './splashScreen';
 import LoginScreen from './login';
+import aboutus from './aboutus';
 const API_KEY ='49cc8c821cd2aff9af04c9f98c36eb74';
 function tellWeatherPage({route}) {
   const img = require('./image.png')
@@ -76,7 +77,10 @@ const addLocation=function(){
   navigation.navigate('addLocation')
   
 }
-
+const aboutus=function(){
+  navigation.navigate('aboutus')
+  
+}
   const tellWeather=function(location){
     console.log("location")
     console.log(location)
@@ -123,20 +127,22 @@ const addLocation=function(){
           </Text>}
           />
   }
-<br/>
+  <View  style={{flexDirection: 'row'}}>
 <TouchableOpacity
   style={styles.buttonStyle}
   activeOpacity={0.5}
   onPress={addLocation}>
     <Text style={styles.buttonTextStyle}>Ajouter une ville</Text>
 </TouchableOpacity>
+<TouchableOpacity
+  style={styles.buttonStyle}
+  activeOpacity={0.5}
+  onPress={aboutus}>
+    <Text style={styles.buttonTextStyle}>About us</Text>
+</TouchableOpacity>
+</View>
 
 
-<Text style={styles.upText}>
-          Weather App
-            this application is designed and developped by ABC Company
-          @2002
-      </Text>
   </View>
    
   );
@@ -289,8 +295,7 @@ export default function App() {
                 <Stack.Screen name="tellWeather" component={tellWeatherPage}/>
                 <Stack.Screen name="splash" component={SplashScreen}/>
                 <Stack.Screen name="login" component={LoginScreen}/>
- 
-                
+                <Stack.Screen name="aboutus" component={aboutus}/>                
             </Stack.Navigator>
         </NavigationContainer>
     ); 
