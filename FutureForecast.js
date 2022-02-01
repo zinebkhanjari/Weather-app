@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     futureForecastItemContainer: {
         flex:1,
         justifyContent: 'center',
-        backgroundColor: '#00000033',
+        backgroundColor: '#FFFFFF33',
         borderRadius:10,
         borderColor:"#eee",
         borderWidth:1,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     day: {
         fontSize: 20,
         color:"white",
-        backgroundColor: "#3c3c44",
+        backgroundColor: "#f4cccc",
         padding: 10,
         textAlign:"center",
         borderRadius: 50,

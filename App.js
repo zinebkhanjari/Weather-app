@@ -38,7 +38,7 @@ useEffect(() => {
 
         <DateTime current={data.current} timezone={data.timezone} lat={data.lat} lon={data.lon}/>
         <WeatherScroll weatherData={data.daily}/>
-
+     
         </ImageBackground>
        
      
@@ -88,10 +88,13 @@ const addLocation=function(){
     });
     console.log("done")
   }
+  const img = require('./image.png')
 
   
   return (
     <View style={styles.container}>
+                  
+
       <Image
                 source={require('./logo_seule.png')}
                 style={{
@@ -138,6 +141,7 @@ const addLocation=function(){
             this application is designed and developped by ABC Company
           @2002
       </Text>
+     
   </View>
    
   );

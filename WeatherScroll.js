@@ -41,7 +41,7 @@ const CurrentTempEl = ({data}) => {
 const styles = StyleSheet.create({
     scrollView: {
         flex:0.4,
-        backgroundColor: '#18181bcc',
+        backgroundColor: '#FFFFFFF33',
         padding:30
     },
     image: {
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     },
     currentTempContainer: {
         flexDirection: 'row',
-        backgroundColor: '#00000033',
+        backgroundColor: '#FFFFFFF33',
         justifyContent:"center",
         alignItems:'center',
         borderRadius: 10,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     day: {
         fontSize: 20,
         color:"white",
-        backgroundColor: "#3c3c44",
+        backgroundColor: '#FFFFFF33',
         padding: 10,
         textAlign:"center",
         borderRadius: 50,
