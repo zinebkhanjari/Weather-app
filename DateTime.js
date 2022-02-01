@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet,Image} from 'react-native';
 import moment from 'moment-timezone'
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -53,8 +53,16 @@ const DateTime = ({current, lat, lon, timezone}) => {
                </View>
            </View>
            <View style={styles.rightAlign}>
-               <Text style={styles.timezone}>{timezone}</Text>
-               <Text style={styles.latlong}>{lat}N {lon}E</Text>
+               <Image
+              source={require('./logo.png')}
+              style={{
+                width: 400,
+                height: 400,
+                resizeMode: 'contain',
+                margin: 10,
+                backgroundColor: 'transparent',
+              }}
+            />
            </View>
         </View>
     )

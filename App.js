@@ -146,15 +146,14 @@ const aboutus=function(){
 </View>
 
 
-<<<<<<< HEAD
+
 <Text style={styles.upText}>
-          Weather App
+          Boost Weather 
             this application is designed and developped by ABC Company
-          @2002
+          @2022
       </Text>
      
-=======
->>>>>>> ed3a73c29731747abe6ff887f2108be1eb00dcb9
+
   </View>
    
   );

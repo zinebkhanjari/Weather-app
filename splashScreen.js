@@ -28,7 +28,7 @@ const SplashScreen = ({navigation}) => {
           value === null ? 'login' : 'DrawerNavigationRoutes'
         ),
       );
-    }, 5000);
+    }, 3000);
   }, []);
 
   return (
