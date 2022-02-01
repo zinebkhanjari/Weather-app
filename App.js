@@ -1,4 +1,4 @@
-import { StyleSheet,FlatList, Text,  TouchableOpacity,View ,Button,TextInput,Image, ImageBackground} from 'react-native';
+import { StyleSheet,FlatList, Text, ScrollView, TouchableOpacity,View ,Button,TextInput,Image,KeyboardAvoidingView, ImageBackground} from 'react-native';
 import { db } from "./firebase";
 import DateTime from './DateTime'
 import WeatherScroll from './WeatherScroll'
@@ -10,13 +10,13 @@ import { ListItem, Avatar } from 'react-native-elements'
 import { Icon } from 'react-native-elements';
 import SplashScreen from './splashScreen';
 import LoginScreen from './login';
+import aboutus from './aboutus';
 const API_KEY ='49cc8c821cd2aff9af04c9f98c36eb74';
 function tellWeatherPage({route}) {
   const img = require('./image.png')
 console.log(route.params.location.key.name)
  
 const [data, setData] = useState({});
-
 useEffect(() => {
 
     fetchDataFromApi(route.params.location.key.latitude, route.params.location.key.longitude);
@@ -77,7 +77,10 @@ const addLocation=function(){
   navigation.navigate('addLocation')
   
 }
-
+const aboutus=function(){
+  navigation.navigate('aboutus')
+  
+}
   const tellWeather=function(location){
     console.log("location")
     console.log(location)
@@ -127,21 +130,31 @@ const addLocation=function(){
           </Text>}
           />
   }
-<br/>
+  <View  style={{flexDirection: 'row'}}>
 <TouchableOpacity
   style={styles.buttonStyle}
   activeOpacity={0.5}
   onPress={addLocation}>
     <Text style={styles.buttonTextStyle}>Ajouter une ville</Text>
 </TouchableOpacity>
+<TouchableOpacity
+  style={styles.buttonStyle}
+  activeOpacity={0.5}
+  onPress={aboutus}>
+    <Text style={styles.buttonTextStyle}>About us</Text>
+</TouchableOpacity>
+</View>
 
 
+<<<<<<< HEAD
 <Text style={styles.upText}>
           Weather App
             this application is designed and developped by ABC Company
           @2002
       </Text>
      
+=======
+>>>>>>> ed3a73c29731747abe6ff887f2108be1eb00dcb9
   </View>
    
   );
@@ -217,36 +230,66 @@ function addLocationPage({navigation}){
   }
 
   return(
-    
-      <View style={styles.container}>
-         
-          <Text>Ajouter une nouvelle ville</Text>
-          <br/>
-          <TextInput
-        style={styles.input}
-        onChangeText={newText => setName(newText)}
-        value={location_name}
-        placeholder="entez le nom de la ville"
-        
-      />
-      <br/>
-          <TextInput
-        style={styles.input}
-        onChangeText={newText => setLongitude(newText)}
-        value={longitude}
-        placeholder="entez la longitude"
-        
-      />
-      <br/>
-      <TextInput
-        style={styles.input}
-        onChangeText={newText => setLatitude(newText)}
-        value={latitude}
-        placeholder="entez la latitude"
-        
-      />
-     <br/>
-          <Button onPress={save} title="accueil" />
+      
+      <View style={styles.mainBody}>
+        <ScrollView
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={{
+          flex: 1,
+          justifyContent: 'center',
+          alignContent: 'center',
+        }}>
+          <View>
+            <KeyboardAvoidingView enabled>
+
+          <View style={{alignItems: 'center'}}>
+            <Image
+              source={require('./logo_seule.png')}
+              style={{
+                width: '50%',
+                height: 100,
+                resizeMode: 'contain',
+                margin: 10,
+              }}
+            />
+            <Text style={{fontWeight: 'bold'}}>Ajouter une nouvelle ville</Text>
+          </View>
+          <View style={styles.SectionStyle}>
+            <TextInput
+              style={styles.inputStyle}
+              onChangeText={newText => setName(newText)}
+              value={location_name}
+              placeholder="entez le nom de la ville"
+              
+            />
+            </View>
+            <View style={styles.SectionStyle}>
+            <TextInput
+              style={styles.inputStyle}
+              onChangeText={newText => setLongitude(newText)}
+              value={longitude}
+              placeholder="entez la longitude"
+            />
+            </View>
+            <View style={styles.SectionStyle}>
+
+            <TextInput
+              style={styles.inputStyle}
+              onChangeText={newText => setLatitude(newText)}
+              value={latitude}
+              placeholder="entez la latitude"
+            />
+            </View>
+            <TouchableOpacity
+              style={styles.buttonAddStyle}
+              activeOpacity={0.5}
+              onPress={save}>
+              <Text style={styles.buttonTextStyle}>Ajouter</Text>
+            </TouchableOpacity>
+            </KeyboardAvoidingView>
+        </View>
+
+          </ScrollView>
       </View>
   )
 }
@@ -264,8 +307,7 @@ export default function App() {
                 <Stack.Screen name="tellWeather" component={tellWeatherPage}/>
                 <Stack.Screen name="splash" component={SplashScreen}/>
                 <Stack.Screen name="login" component={LoginScreen}/>
- 
-                
+                <Stack.Screen name="aboutus" component={aboutus}/>                
             </Stack.Navigator>
         </NavigationContainer>
     ); 
@@ -322,9 +364,46 @@ const styles = StyleSheet.create({
     justifyContent:"center"
 
   },
+  buttonAddStyle: {
+    backgroundColor: '#307ecc',
+    borderWidth: 0,
+    color: '#FFFFFF',
+    borderColor: '#307ecc',
+    height: 40,
+    alignItems: 'center',
+    borderRadius: 30,
+    
+    marginLeft: 35,
+    marginRight: 35,
+    marginTop: 20,
+    marginBottom: 25,
+  },
   buttonTextStyle: {
     color: '#FFFFFF',
     paddingVertical: 10,
     fontSize: 16,
+  },
+  mainBody: {
+    flex: 1,
+    justifyContent: 'center',
+   backgroundColor: '#FFFFFF',
+    alignContent: 'center',
+  },
+  inputStyle: {
+    flex: 1,
+    color: 'black',
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderWidth: 1,
+    borderRadius: 30,
+    borderColor: '#dadae8',
+  },
+  SectionStyle: {
+    flexDirection: 'row',
+    height: 40,
+    marginTop: 20,
+    marginLeft: 35,
+    marginRight: 35,
+    margin: 10,
   },
 });
