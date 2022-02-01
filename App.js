@@ -1,14 +1,15 @@
 import { StyleSheet,FlatList, Text, View ,Button,TextInput,ImageBackground} from 'react-native';
 import { db } from "./firebase";
 import DateTime from './DateTime'
-//import WeatherScroll from './WeatherScroll'
+import WeatherScroll from './WeatherScroll'
 import {NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, {useEffect, useState}from 'react';
 import {collection, addDoc, Timestamp, query, orderBy, onSnapshot} from 'firebase/firestore'
 import { ListItem, Avatar } from 'react-native-elements'
 import { Icon } from 'react-native-elements';
-
+import SplashScreen from './splashScreen';
+import LoginScreen from './login';
 const API_KEY ='49cc8c821cd2aff9af04c9f98c36eb74';
 function tellWeatherPage({route}) {
   const img = require('./image.png')
@@ -36,6 +37,8 @@ useEffect(() => {
             <ImageBackground source={img} style={styles.image} >
 
         <DateTime current={data.current} timezone={data.timezone} lat={data.lat} lon={data.lon}/>
+        <WeatherScroll weatherData={data.daily}/>
+
         </ImageBackground>
        
      
@@ -245,11 +248,15 @@ export default function App() {
 
     return(
         <NavigationContainer>
-            <Stack.Navigator initialRouteName='Home'>
+            <Stack.Navigator initialRouteName='splash'>
                 <Stack.Screen name="Home" component={citiesList}/>
                 <Stack.Screen name="Details" component={DetailsScreen}/>
                 <Stack.Screen name="addLocation" component={addLocationPage}/>
                 <Stack.Screen name="tellWeather" component={tellWeatherPage}/>
+                <Stack.Screen name="splash" component={SplashScreen}/>
+                <Stack.Screen name="login" component={LoginScreen}/>
+ 
+                
             </Stack.Navigator>
         </NavigationContainer>
     ); 
