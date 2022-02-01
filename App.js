@@ -1,4 +1,4 @@
-import { StyleSheet,FlatList, Text, View ,Button,TextInput,ImageBackground} from 'react-native';
+import { StyleSheet,FlatList, Text,  TouchableOpacity,View ,Button,TextInput,Image, ImageBackground} from 'react-native';
 import { db } from "./firebase";
 import DateTime from './DateTime'
 import WeatherScroll from './WeatherScroll'
@@ -92,47 +92,52 @@ const addLocation=function(){
   
   return (
     <View style={styles.container}>
-
-
-<Text style={styles.upText}>
-<Icon
-          name='sunny' />
-  Weather App
-  this application is designed and developped by ABC Company
-  @2002
-</Text>
+      <Image
+                source={require('./logo_seule.png')}
+                style={{
+                  width: '50%',
+                  height: 100,
+                  resizeMode: 'contain',
+                  margin: 10,
+                  marginBottom:0
+                }}
+              />
+      
 
 
   {
           <FlatList
-          data={cities}
-          renderItem={({item}) => <Text onPress={newText => tellWeather(item) }
-          style={styles.item}>
+            data={cities}
+            renderItem={({item}) => <Text onPress={newText => tellWeather(item) }
+            style={styles.item}>
             
             <ListItem bottomDivider>
-        
-            <Icon
-          name='location-pin' />
-          
-        <ListItem.Content>
-        
-            <ListItem.Title>{item.key.name} - MA</ListItem.Title> 
-          <ListItem.Subtitle>Latitude : {item.key.latitude}</ListItem.Subtitle>
-          <ListItem.Subtitle>Longitude : {item.key.longitude}</ListItem.Subtitle>
-
-          <ListItem.Chevron />
-        </ListItem.Content>
-      </ListItem>
+              <Icon name='location-pin' />
+              <ListItem.Content>
+                <ListItem.Title>{item.key.name} - MA</ListItem.Title> 
+                <ListItem.Subtitle>Latitude : {item.key.latitude}</ListItem.Subtitle>
+                <ListItem.Subtitle>Longitude : {item.key.longitude}</ListItem.Subtitle>
+                <ListItem.Chevron />
+              </ListItem.Content>
+            </ListItem>
 
           </Text>}
           />
-         
-
   }
 <br/>
-    <Button onPress={addLocation} title='Ajouter une ville'/>
-<br/>
-    <Button title="A propos de l'application " />
+<TouchableOpacity
+  style={styles.buttonStyle}
+  activeOpacity={0.5}
+  onPress={addLocation}>
+    <Text style={styles.buttonTextStyle}>Ajouter une ville</Text>
+</TouchableOpacity>
+
+
+<Text style={styles.upText}>
+          Weather App
+            this application is designed and developped by ABC Company
+          @2002
+      </Text>
   </View>
    
   );
@@ -270,8 +275,6 @@ const styles = StyleSheet.create({
     fontSize:17,
     color:'#FFFFFF',
     fontFamily:'Times New Roman',
-    textShadowColor:'#585858',
-    textShadowRadius:5,
 
   },
   input : {
@@ -286,9 +289,38 @@ const styles = StyleSheet.create({
     justifyContent:"center"
   },
   upText : {
-    justifyContent:"center",
+    color: '#307ecc',
+    textAlign: 'center',
+    fontSize: 10,
+    alignSelf: 'center',
+    padding: 10,
+  },
+  item: {
+    padding:50,
+    paddingTop:0,
+    paddingBottom:0,
+    fontSize: 18,
+  },
+  buttonStyle: {
+    backgroundColor: '#307ecc',
+    borderWidth: 0,
+    color: '#FFFFFF',
+    borderColor: '#307ecc',
+    height: 40,
     alignItems: 'center',
-    backgroundColor: 'yellow',
-    margin: 30,
-  }
+    borderRadius: 30,
+    marginLeft: 35,
+    marginRight: 35,
+    marginTop: 20,
+    marginBottom: 0,
+    paddingLeft:10,
+    paddingRight:10,
+    justifyContent:"center"
+
+  },
+  buttonTextStyle: {
+    color: '#FFFFFF',
+    paddingVertical: 10,
+    fontSize: 16,
+  },
 });
